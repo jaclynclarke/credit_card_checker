@@ -28,15 +28,15 @@ function validateCred (array) {
     let newArray = array;
     let reversedArray = [];
     let initialValue = 0;
-    for (i = newArray.length - 1; i >= 0; i--) {
+    for (let i = newArray.length - 1; i >= 0; i--) {
         reversedArray.push(newArray[i]);
     }
-    for (i = 0; i < reversedArray.length; i++) {
+    for (let i = 0; i < reversedArray.length; i++) {
         if (i % 2 != 0) {
             reversedArray.splice(i, 1, reversedArray[i] * 2);
         } 
     }
-    for (i = 0; i < reversedArray.length; i++) {
+    for (let i = 0; i < reversedArray.length; i++) {
         if (reversedArray[i] > 9) {
             reversedArray.splice(i, 1, reversedArray[i] - 9);
         }
@@ -53,12 +53,35 @@ function validateCred (array) {
 
 function findInvalidCards (array) {
     let invalidCards = [];
-    for (j = 0; j < array.length; j++) {
-        if (validateCred(array[j] === false)) {
+    for (let j = 0; j < array.length; j++) {
+        if (validateCred(array[j]) === false) {
             invalidCards.push(array[j]);
         }
-}
-    console.log(invalidCards);
+    }
+    return invalidCards;
 }
 
-findInvalidCards(batch);
+
+function idInvalidCardCompanies (array) {
+    let invalidCompanies = [];
+    for (k = 0; k < array.length; k++) {
+        if (array[k][0] === 3) {
+            if (invalidCompanies.find((company) => company === 'Amex') != 'Amex')
+            invalidCompanies.push('Amex');
+        } else if (array[k][0] === 4) {
+            if (invalidCompanies.find((company) => company === 'Visa') != 'Visa')
+            invalidCompanies.push('Visa');
+        } else if (array[k][0] === 5) {
+            if (invalidCompanies.find((company) => company === 'Mastercard') != 'Mastercard')
+            invalidCompanies.push('Mastercard');
+        } else if (array[k][0] === 6) {
+            if (invalidCompanies.find((company) => company === 'Discover') != 'Discover')
+            invalidCompanies.push('Discover');
+        } else {
+            console.log('Company not found')
+        }
+    }
+    console.log(invalidCompanies);
+}
+
+idInvalidCardCompanies(findInvalidCards(batch));
