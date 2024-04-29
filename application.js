@@ -52,13 +52,13 @@ function validateCred (array) {
 }
 
 function findInvalidCards (array) {
-    let invalid = [];
-    for (i = 0; i < array.length; i++) {
-        if (validateCred(array[i]) === false) {
-            invalid.push(array[i]);
+    let invalidCards = [];
+    for (j = 0; j < array.length; j++) {
+        if (validateCred(array[j] === false)) {
+            invalidCards.push(array[j]);
         }
-    }
-    return invalid;
+}
+    console.log(invalidCards);
 }
 
-console.log(findInvalidCards(batch));
+findInvalidCards(batch);
